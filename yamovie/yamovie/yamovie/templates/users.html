@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Пользователи - Yamovie</title>
+    <link rel="icon" href="/static/images/logo.png" type="image/png">
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+    <!--Google fonts    -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;900&family=Roboto&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
+</head>
+<body>
+  <div class="movie">
+    <header>
+      <h1><img src="/static/images/logo.png" alt="logo"></h1>
+      <h1>Yamovie</h1>
+      <h2>Пользователи</h2>
+      <a href="/">Домашняя страница</a> |
+      <a href="/movies">Фильмы</a> |
+      <a href="/add_user">Добавить пользователя</a>
+      <br>
+      <br>
+    </header>
+    <main>
+        {% if users %}
+          <ol class="movie-grid">
+          {% for user in users %}
+            <li>
+              <a href="/users/{{ user.id }}">{{ user.user_name }}</a>
+                <div class="movie-title">
+                    <a href="/users/{{ user.id }}/update_user">Обновить</a>
+                    |
+                    <a href="/users/{{ user.id }}/delete_user">Удалить</a>
+                </div>
+            </li>
+          {% endfor %}
+          </ol>
+        {% else %}
+            <div class="error">
+                <p>Пока нет пользователей, добавьте одного.</p>
+            </div>
+        {% endif %}
+    </main>
+  </div>
+</body>
+</html>
